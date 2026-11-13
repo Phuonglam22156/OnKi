@@ -6480,5 +6480,930 @@ window.EXAM_DECKS = [
         "D. Milestone achieved"
       ]
     ]
+  },
+  {
+    "id": "exam-dbs401_fe_su23",
+    "code": "SU23",
+    "title": "DBS401 · SU23 — FE",
+    "subject": "DBS401 · Bảo mật CSDL",
+    "color": "blue",
+    "symbol": "DB",
+    "source": "DBS401_FE_SU23.docx",
+    "answerSource": "Đáp án theo phần in đậm trong tài liệu gốc; chưa thẩm định chuyên môn.",
+    "questions": [
+      {
+        "number": 1,
+        "term": "When choosing an appropriate operating system, you first must decide on either a_____ -bit or a______ -bit platform.",
+        "options": [
+          "12. 24",
+          "24, 48",
+          "32,64",
+          "64, 128"
+        ],
+        "answerIndices": [
+          2
+        ]
+      },
+      {
+        "number": 2,
+        "term": "Which command used to get cur MySQL",
+        "options": [
+          "TIME",
+          "DATETIME()",
+          "NOW()",
+          "DATED()"
+        ],
+        "answerIndices": [
+          2
+        ]
+      },
+      {
+        "number": 3,
+        "term": "Informal auts are conducted as a way to organizations evidence that the security policies and prachcia are effective and working properly.",
+        "options": [
+          "The",
+          "False"
+        ],
+        "answerIndices": [
+          1
+        ]
+      },
+      {
+        "number": 4,
+        "term": "Before the request for a Web page can be sent, the URL needs to be changed into a(n) it routable across the network.\naddress to make",
+        "options": [
+          "DNS",
+          "SQL",
+          "HTML",
+          "IP",
+          "All of the other choices"
+        ],
+        "answerIndices": [
+          3
+        ]
+      },
+      {
+        "number": 5,
+        "term": "The Web server tests the data for errors or inappropriate database responses.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answerIndices": [
+          1
+        ]
+      },
+      {
+        "number": 6,
+        "term": "Which of the following property can used to create the surrogate key?",
+        "options": [
+          "DISTINCT",
+          "UNIQUE",
+          "SEQUENCE",
+          "AUTO INCREMENT"
+        ],
+        "answerIndices": [
+          3
+        ]
+      },
+      {
+        "number": 7,
+        "term": "A warm site is an exact replica of an organization's network, in other words, a mirror site.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answerIndices": [
+          1
+        ]
+      },
+      {
+        "number": 8,
+        "term": "______are the most common way to access resources available throughout the environment",
+        "options": [
+          "System boosters",
+          "Network ports",
+          "Firewalls",
+          "Data scopes"
+        ],
+        "answerIndices": [
+          1
+        ]
+      },
+      {
+        "number": 9,
+        "term": "A(n)______key is a field with values that are used to sequence data.",
+        "options": [
+          "identity",
+          "composite",
+          "altemate",
+          "control"
+        ],
+        "answerIndices": [
+          3
+        ]
+      },
+      {
+        "number": 10,
+        "term": "Oracle requires TCP/IP with   and named pipes in order to communicate with other devices on a network.",
+        "options": [
+          "SQL",
+          "XPS",
+          "SSL",
+          "WPS"
+        ],
+        "answerIndices": [
+          2
+        ]
+      },
+      {
+        "number": 11,
+        "term": "A disaster plan is a plan developed to ensure the quick reinstatement of a network that has fallen victim to a human or naturally caused disaster",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answerIndices": [
+          0
+        ]
+      },
+      {
+        "number": 12,
+        "term": "The Index Scans feature allows simultaneous full-index scans and reads of data blocks, increasing the response times for data manipulation and retrieval.",
+        "options": [
+          "Full",
+          "Complete",
+          "Concurrent",
+          "Parallel"
+        ],
+        "answerIndices": [
+          3
+        ]
+      },
+      {
+        "number": 13,
+        "term": "requests are encoded by the browser into a URL and the server will execute whatever parameters are appended to the URL itself.",
+        "options": [
+          "POST",
+          "HEAD",
+          "GET",
+          "TRACE"
+        ],
+        "answerIndices": [
+          2
+        ]
+      },
+      {
+        "number": 14,
+        "term": "refers to the act of converting source code that is written in one language into a different programming language or machine language.",
+        "options": [
+          "Encrypting",
+          "Compiling",
+          "Sourcing",
+          "Mirroring",
+          "All of the other choices"
+        ],
+        "answerIndices": [
+          1
+        ]
+      },
+      {
+        "number": 15,
+        "term": "is the process of gathering information either directly or indirectly from a system or the system's environment.",
+        "options": [
+          "Information reconnaissance",
+          "Port Scanning",
+          "Data mining",
+          "SQL injection"
+        ],
+        "answerIndices": [
+          0
+        ]
+      },
+      {
+        "number": 16,
+        "term": "statements provide an opportunity for an intruder to attach his or her own queries onto already existing legitimate statements",
+        "options": [
+          "ADD",
+          "APPEND",
+          "END",
+          "UNION"
+        ],
+        "answerIndices": [
+          3
+        ]
+      },
+      {
+        "number": 17,
+        "term": "The disadvantage of using time delays is the unreliable results.",
+        "options": [
+          "False",
+          "True"
+        ],
+        "answerIndices": [
+          1
+        ]
+      },
+      {
+        "number": 18,
+        "term": "All systems need to be tested in black box testing",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answerIndices": [
+          1
+        ]
+      },
+      {
+        "number": 19,
+        "term": "A is a piece of information that is used to verify identity, such as a person's username and password, an application's secure ID, or a host's network name and address.",
+        "options": [
+          "node",
+          "credential",
+          "role",
+          "privilege"
+        ],
+        "answerIndices": [
+          1
+        ]
+      },
+      {
+        "number": 20,
+        "term": "Usage agreements commonly include a policy that informs users not to tell their password to anyone in the organization",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answerIndices": [
+          0
+        ]
+      },
+      {
+        "number": 21,
+        "term": "The for installing MySQL on Windows is ideal for almost any environment because it allows for a lighter installation of MySQL",
+        "options": [
+          "Essentials Package",
+          "Complete Package",
+          "Noinstall Archive",
+          "Patch Archive",
+          "All of the other choices"
+        ],
+        "answerIndices": [
+          0
+        ]
+      },
+      {
+        "number": 22,
+        "term": "The____________manages connections to the MySQL server",
+        "options": [
+          "database connection manager",
+          "connector",
+          "web service",
+          "manager"
+        ],
+        "answerIndices": [
+          0
+        ]
+      },
+      {
+        "number": 23,
+        "term": "Source code can be analyzed both while the code is running and while it is not.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answerIndices": [
+          0
+        ]
+      },
+      {
+        "number": 24,
+        "term": "Monitoring privileges very closely to ensure security and is a must.",
+        "options": [
+          "singularity",
+          "collaboration",
+          "granularity",
+          "synchronization"
+        ],
+        "answerIndices": [
+          2
+        ]
+      },
+      {
+        "number": 25,
+        "term": "_______is the process of saving a duplicate of requested data to another area of a system in hopes of saving resources and speeding up the future requests for that same data..",
+        "options": [
+          "Caching",
+          "Backup",
+          "Replicate",
+          "DDoS"
+        ],
+        "answerIndices": [
+          0
+        ]
+      },
+      {
+        "number": 26,
+        "term": "is designed to enable the tracking of the history of a table, for auditing and compliance purposes",
+        "options": [
+          "Oracle Spatial",
+          "Oracle Tuning Pack",
+          "Oracle Active Data Guard",
+          "Oracle Total Recall"
+        ],
+        "answerIndices": [
+          3
+        ]
+      },
+      {
+        "number": 27,
+        "term": "In terms of security, it is a good idea to store passwords as text strings within a database.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answerIndices": [
+          1
+        ]
+      },
+      {
+        "number": 28,
+        "term": "On all database management systems, user passwords are stored using a nonreversible within a table\nfor which privileges are needed to access.",
+        "options": [
+          "filter",
+          "hash",
+          "URL",
+          "procedure"
+        ],
+        "answerIndices": [
+          1
+        ]
+      },
+      {
+        "number": 29,
+        "term": "Both statistical and logical inference can be identified by monitoring and analyzing unusual queries and by setting a baseline and threshold alert for unusual user activity",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answerIndices": [
+          0
+        ]
+      },
+      {
+        "number": 30,
+        "term": "can create vulnerability and provide the means by which intruders can obtain full administration of a database",
+        "options": [
+          "SQL injections",
+          "Oracle databases",
+          "HTTP",
+          "TCP"
+        ],
+        "answerIndices": [
+          0
+        ]
+      },
+      {
+        "number": 31,
+        "term": "The Integrated Services tool provides online analytical processing (OLAP) and data mining for a database.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answerIndices": [
+          1
+        ]
+      },
+      {
+        "number": 32,
+        "term": "________refers to the incidence of changing forms, or self-modification.",
+        "options": [
+          "Polymorphism",
+          "Metamorphism",
+          "Megamorphism",
+          "Multimorphism",
+          "None of the other choices"
+        ],
+        "answerIndices": [
+          0
+        ]
+      },
+      {
+        "number": 33,
+        "term": "operator combines two or more SQL. statements from which the output is combined.",
+        "options": [
+          "UNION",
+          "APPEND",
+          "END",
+          "SELECT"
+        ],
+        "answerIndices": [
+          0
+        ]
+      },
+      {
+        "number": 34,
+        "term": "To qualify for a license of the Oracle Database Standard Edition (SE), there must be at least or more users",
+        "options": [
+          "two",
+          "five",
+          "seven",
+          "ten"
+        ],
+        "answerIndices": [
+          1
+        ]
+      },
+      {
+        "number": 35,
+        "term": "In SQL Server, password policies can be reconfigured and customized for each user login using the function",
+        "options": [
+          "ALTER LOGIN",
+          "SETUP",
+          "USER",
+          "PASSWORD"
+        ],
+        "answerIndices": [
+          0
+        ]
+      },
+      {
+        "number": 36,
+        "term": "In the context of a database table, the statement \"A\nB\" indicates that if you know the value of attribute A,\nyou can look up the value of attribute B",
+        "options": [
+          "contains",
+          "is related to",
+          "owns",
+          "determines"
+        ],
+        "answerIndices": [
+          3
+        ]
+      },
+      {
+        "number": 37,
+        "term": "Which of the following are some important dynamic performance views?",
+        "options": [
+          "VSDatabase, VScursor, VScontrolfiles, Všlogfiles",
+          "VSDatabase, VSInstance, V$controlfiles, VSlogfiles",
+          "VSDatabase, VSInstance, VStrigger, VSlogfiles",
+          "None of the mentioned"
+        ],
+        "answerIndices": [
+          1
+        ]
+      },
+      {
+        "number": 38,
+        "term": "What is a database?",
+        "options": [
+          "A central repository for storing read-only data.",
+          "A central point of access.",
+          "A decentralized point of access.",
+          "A central single point for storing and retheving data."
+        ],
+        "answerIndices": [
+          3
+        ]
+      },
+      {
+        "number": 39,
+        "term": "Which of following variables must be set on Linux environment for Oracle installation?",
+        "options": [
+          "PATH, DB WRITER_PROCESSES, TNS_ADMIN",
+          "PATH, LD_LIBRARY_PATH, TNS_ADMIN",
+          "PATH, LD LIBRARY_PATH, TNS",
+          "None of the mentioned"
+        ],
+        "answerIndices": [
+          1
+        ]
+      },
+      {
+        "number": 40,
+        "term": "is the final step of the security assessment",
+        "options": [
+          "Reporting Phase",
+          "Execution Phase",
+          "Information Reconnaissance",
+          "Obtaining Access"
+        ],
+        "answerIndices": [
+          0
+        ]
+      },
+      {
+        "number": 41,
+        "term": "is the final step of the security assessment",
+        "options": [
+          "Reporting Phase",
+          "Execution Phase",
+          "Information Reconnaissance",
+          "Obtaining Access"
+        ],
+        "answerIndices": [
+          0
+        ]
+      },
+      {
+        "number": 42,
+        "term": "The goal of auditing is to fix issues on the network or to identify security holes.",
+        "options": [
+          "False",
+          "True"
+        ],
+        "answerIndices": [
+          1
+        ]
+      },
+      {
+        "number": 43,
+        "term": "Which of the following clause is used to delete entire MySQL database?",
+        "options": [
+          "DROP DATABASE",
+          "mysql_drop",
+          "mysql_drop_db",
+          "drop_db"
+        ],
+        "answerIndices": [
+          0
+        ]
+      },
+      {
+        "number": 44,
+        "term": "Which of the following statement is used to remove data without commit?",
+        "options": [
+          "All of mentioned",
+          "TRUNC",
+          "REMOVE",
+          "DELETE"
+        ],
+        "answerIndices": [
+          3
+        ]
+      },
+      {
+        "number": 45,
+        "term": "SQL Server data is stored, retrieved, and manipulated within a architecture.",
+        "options": [
+          "triangular",
+          "fiat",
+          "node-outposts",
+          "client-server"
+        ],
+        "answerIndices": [
+          3
+        ]
+      },
+      {
+        "number": 46,
+        "term": "Information gathering that occurs during assessment is also known as information",
+        "options": [
+          "reconnaissance",
+          "structuring",
+          "identification",
+          "building"
+        ],
+        "answerIndices": [
+          0
+        ]
+      },
+      {
+        "number": 47,
+        "term": "The Complete Package for installing MySQL on Windows is ideal for almost any environment because it allows for a lighter installation of MySQL",
+        "options": [
+          "False",
+          "True"
+        ],
+        "answerIndices": [
+          0
+        ]
+      },
+      {
+        "number": 48,
+        "term": "Which one of following is a DDL command?",
+        "options": [
+          "DELETE",
+          "SELECT",
+          "UPDATE",
+          "CREATE"
+        ],
+        "answerIndices": [
+          3
+        ]
+      },
+      {
+        "number": 49,
+        "term": "Becoming familiar with typical database errors is important for identifying the anomalies and vulnerabilities within a system and its environment.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answerIndices": [
+          0
+        ]
+      },
+      {
+        "number": 50,
+        "term": "is the process of confirming the identity of those individuals or applications that request access to a secure environment",
+        "options": [
+          "Authentication",
+          "Authorization",
+          "Inference",
+          "Detection"
+        ],
+        "answerIndices": [
+          0
+        ]
+      },
+      {
+        "number": 51,
+        "term": "Once access to a system has been achieved, SQL statements can be used to construct the database\nschema and escalate user privileges.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answerIndices": [
+          0
+        ]
+      },
+      {
+        "number": 52,
+        "term": "It is possible for the DNS server to be attacked, an intrusion called DNS",
+        "options": [
+          "spoofing",
+          "poisoning",
+          "phishing",
+          "All of the other choices",
+          "cracking"
+        ],
+        "answerIndices": [
+          1
+        ]
+      },
+      {
+        "number": 53,
+        "term": "The auditing process generally includes three steps: prepare, audit, and",
+        "options": [
+          "research",
+          "analyze",
+          "report",
+          "implement"
+        ],
+        "answerIndices": [
+          2
+        ]
+      },
+      {
+        "number": 54,
+        "term": "Which of the following is invalid operator category in MS SQL Server?",
+        "options": [
+          "Bitwise",
+          "Unary",
+          "Real",
+          "Logical"
+        ],
+        "answerIndices": [
+          2
+        ]
+      },
+      {
+        "number": 55,
+        "term": "refers to the efforts taken through policy, procedure, and design to maintain the accessibility of resources on a network or within a database",
+        "options": [
+          "Availability",
+          "Confidentiality",
+          "Portability",
+          "Integrity",
+          "None of the other choices"
+        ],
+        "answerIndices": [
+          0
+        ]
+      }
+    ],
+    "cards": [
+      [
+        "1. When choosing an appropriate operating system, you first must decide on either a_____ -bit or a______ -bit platform.",
+        "C. 32,64"
+      ],
+      [
+        "2. Which command used to get cur MySQL",
+        "C. NOW()"
+      ],
+      [
+        "3. Informal auts are conducted as a way to organizations evidence that the security policies and prachcia are effective and working properly.",
+        "B. False"
+      ],
+      [
+        "4. Before the request for a Web page can be sent, the URL needs to be changed into a(n) it routable across the network.\naddress to make",
+        "D. IP"
+      ],
+      [
+        "5. The Web server tests the data for errors or inappropriate database responses.",
+        "B. False"
+      ],
+      [
+        "6. Which of the following property can used to create the surrogate key?",
+        "D. AUTO INCREMENT"
+      ],
+      [
+        "7. A warm site is an exact replica of an organization's network, in other words, a mirror site.",
+        "B. False"
+      ],
+      [
+        "8. ______are the most common way to access resources available throughout the environment",
+        "B. Network ports"
+      ],
+      [
+        "9. A(n)______key is a field with values that are used to sequence data.",
+        "D. control"
+      ],
+      [
+        "10. Oracle requires TCP/IP with   and named pipes in order to communicate with other devices on a network.",
+        "C. SSL"
+      ],
+      [
+        "11. A disaster plan is a plan developed to ensure the quick reinstatement of a network that has fallen victim to a human or naturally caused disaster",
+        "A. True"
+      ],
+      [
+        "12. The Index Scans feature allows simultaneous full-index scans and reads of data blocks, increasing the response times for data manipulation and retrieval.",
+        "D. Parallel"
+      ],
+      [
+        "13. requests are encoded by the browser into a URL and the server will execute whatever parameters are appended to the URL itself.",
+        "C. GET"
+      ],
+      [
+        "14. refers to the act of converting source code that is written in one language into a different programming language or machine language.",
+        "B. Compiling"
+      ],
+      [
+        "15. is the process of gathering information either directly or indirectly from a system or the system's environment.",
+        "A. Information reconnaissance"
+      ],
+      [
+        "16. statements provide an opportunity for an intruder to attach his or her own queries onto already existing legitimate statements",
+        "D. UNION"
+      ],
+      [
+        "17. The disadvantage of using time delays is the unreliable results.",
+        "B. True"
+      ],
+      [
+        "18. All systems need to be tested in black box testing",
+        "B. False"
+      ],
+      [
+        "19. A is a piece of information that is used to verify identity, such as a person's username and password, an application's secure ID, or a host's network name and address.",
+        "B. credential"
+      ],
+      [
+        "20. Usage agreements commonly include a policy that informs users not to tell their password to anyone in the organization",
+        "A. True"
+      ],
+      [
+        "21. The for installing MySQL on Windows is ideal for almost any environment because it allows for a lighter installation of MySQL",
+        "A. Essentials Package"
+      ],
+      [
+        "22. The____________manages connections to the MySQL server",
+        "A. database connection manager"
+      ],
+      [
+        "23. Source code can be analyzed both while the code is running and while it is not.",
+        "A. True"
+      ],
+      [
+        "24. Monitoring privileges very closely to ensure security and is a must.",
+        "C. granularity"
+      ],
+      [
+        "25. _______is the process of saving a duplicate of requested data to another area of a system in hopes of saving resources and speeding up the future requests for that same data..",
+        "A. Caching"
+      ],
+      [
+        "26. is designed to enable the tracking of the history of a table, for auditing and compliance purposes",
+        "D. Oracle Total Recall"
+      ],
+      [
+        "27. In terms of security, it is a good idea to store passwords as text strings within a database.",
+        "B. False"
+      ],
+      [
+        "28. On all database management systems, user passwords are stored using a nonreversible within a table\nfor which privileges are needed to access.",
+        "B. hash"
+      ],
+      [
+        "29. Both statistical and logical inference can be identified by monitoring and analyzing unusual queries and by setting a baseline and threshold alert for unusual user activity",
+        "A. True"
+      ],
+      [
+        "30. can create vulnerability and provide the means by which intruders can obtain full administration of a database",
+        "A. SQL injections"
+      ],
+      [
+        "31. The Integrated Services tool provides online analytical processing (OLAP) and data mining for a database.",
+        "B. False"
+      ],
+      [
+        "32. ________refers to the incidence of changing forms, or self-modification.",
+        "A. Polymorphism"
+      ],
+      [
+        "33. operator combines two or more SQL. statements from which the output is combined.",
+        "A. UNION"
+      ],
+      [
+        "34. To qualify for a license of the Oracle Database Standard Edition (SE), there must be at least or more users",
+        "B. five"
+      ],
+      [
+        "35. In SQL Server, password policies can be reconfigured and customized for each user login using the function",
+        "A. ALTER LOGIN"
+      ],
+      [
+        "36. In the context of a database table, the statement \"A\nB\" indicates that if you know the value of attribute A,\nyou can look up the value of attribute B",
+        "D. determines"
+      ],
+      [
+        "37. Which of the following are some important dynamic performance views?",
+        "B. VSDatabase, VSInstance, V$controlfiles, VSlogfiles"
+      ],
+      [
+        "38. What is a database?",
+        "D. A central single point for storing and retheving data."
+      ],
+      [
+        "39. Which of following variables must be set on Linux environment for Oracle installation?",
+        "B. PATH, LD_LIBRARY_PATH, TNS_ADMIN"
+      ],
+      [
+        "40. is the final step of the security assessment",
+        "A. Reporting Phase"
+      ],
+      [
+        "41. is the final step of the security assessment",
+        "A. Reporting Phase"
+      ],
+      [
+        "42. The goal of auditing is to fix issues on the network or to identify security holes.",
+        "B. True"
+      ],
+      [
+        "43. Which of the following clause is used to delete entire MySQL database?",
+        "A. DROP DATABASE"
+      ],
+      [
+        "44. Which of the following statement is used to remove data without commit?",
+        "D. DELETE"
+      ],
+      [
+        "45. SQL Server data is stored, retrieved, and manipulated within a architecture.",
+        "D. client-server"
+      ],
+      [
+        "46. Information gathering that occurs during assessment is also known as information",
+        "A. reconnaissance"
+      ],
+      [
+        "47. The Complete Package for installing MySQL on Windows is ideal for almost any environment because it allows for a lighter installation of MySQL",
+        "A. False"
+      ],
+      [
+        "48. Which one of following is a DDL command?",
+        "D. CREATE"
+      ],
+      [
+        "49. Becoming familiar with typical database errors is important for identifying the anomalies and vulnerabilities within a system and its environment.",
+        "A. True"
+      ],
+      [
+        "50. is the process of confirming the identity of those individuals or applications that request access to a secure environment",
+        "A. Authentication"
+      ],
+      [
+        "51. Once access to a system has been achieved, SQL statements can be used to construct the database\nschema and escalate user privileges.",
+        "A. True"
+      ],
+      [
+        "52. It is possible for the DNS server to be attacked, an intrusion called DNS",
+        "B. poisoning"
+      ],
+      [
+        "53. The auditing process generally includes three steps: prepare, audit, and",
+        "C. report"
+      ],
+      [
+        "54. Which of the following is invalid operator category in MS SQL Server?",
+        "C. Real"
+      ],
+      [
+        "55. refers to the efforts taken through policy, procedure, and design to maintain the accessibility of resources on a network or within a database",
+        "A. Availability"
+      ]
+    ]
   }
 ];
