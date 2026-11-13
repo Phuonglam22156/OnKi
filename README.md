@@ -2,6 +2,10 @@
 
 Website ôn DBS401 bằng tiếng Việt: 9 bộ đề, 429 câu, flashcard, kiểm tra nhiều đáp án, chấm điểm và tiến độ cá nhân. Có 426 câu chấm tự động theo chữ in đậm trong nguồn. Ba câu chưa đánh dấu đáp án được giữ để xem, không chấm tự động.
 
+## Học từng câu
+
+Mở bộ đề để học từng câu với phản hồi ngay khi chọn: đúng hiện xanh, sai hiện đỏ và đáp án chuẩn. Câu nhiều đáp án báo đúng/sai từng lựa chọn, hoàn thành khi chọn đủ hoặc chọn sai. Tiến độ ghi nhớ được cập nhật một lần mỗi câu; buổi học không làm thay đổi lịch sử điểm kiểm tra. Cuối buổi có thể học lại riêng các câu sai.
+
 ## Triển khai trên Vercel
 
 1. Import repository này vào Vercel. Chọn Framework: Other. Build command và output directory đã có trong `vercel.json`.
