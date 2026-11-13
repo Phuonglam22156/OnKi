@@ -1,0 +1,7 @@
+{
+  "name": "onki-study",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {"build": "node scripts/build.cjs", "dev": "node scripts/serve.cjs", "test": "node --test tests/*.test.cjs"},
+  "engines": {"node": ">=22"}
+}
