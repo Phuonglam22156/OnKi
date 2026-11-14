@@ -1,10 +1,19 @@
 function studyAgentHTML(response){
  const ai=response.ai||{};
- const content=ai.status==='loading'?'<p class="ai-loading" role="status">Đang tra cứu tài liệu chính thức và đối chiếu đáp án…</p>':ai.status==='error'?`<p class="ai-error" role="alert">${esc(ai.error)}</p>`:ai.status==='ready'?`<div class="ai-result"><div class="ai-evidence ${ai.data.researched?'':'ai-caution'}">${icon(ai.data.researched?'book':'shield',16)} ${ai.data.researched?'Đã tìm được tài liệu tham khảo chính thức':'Chưa lấy được nguồn phù hợp — chưa đủ căn cứ kiểm chứng'}</div><div class="ai-explanation">${esc(ai.data.explanation)}</div>${ai.data.sources?.length?`<div class="ai-sources"><h4>Tài liệu tìm được</h4>${ai.data.sources.map((s,i)=>`<a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${icon('book',15)}<span>${esc(s.title)}<small>${esc(new URL(s.url).hostname)}</small></span>${icon('arrowup',14)}</a>`).join('')}</div>`:''}<p class="hint">AI có thể nhầm. Hãy mở nguồn để đối chiếu ngữ cảnh và phiên bản. Kết quả này không thay đổi đáp án đề hay điểm của bạn.</p></div>`:'<p class="muted">Tra cứu tài liệu chính thức, giải thích từng lựa chọn và chỉ ra nếu đáp án đề có dấu hiệu mâu thuẫn.</p>';
- return `<section class="study-agent" aria-label="Trợ lý AI"><div class="ai-heading"><div class="ai-avatar">${icon('brain',23)}</div><div><span class="eyebrow">ÔNKI AI · TRỢ LÝ KIẾN THỨC</span><h3>Hiểu vì sao chọn đáp án</h3></div><span class="ai-beta">BETA</span></div>${content}${ai.status!=='ready'?`<button class="secondary ai-ask" id="ask-study-agent" ${ai.status==='loading'?'disabled':''}>${icon('bolt',17)} ${ai.status==='loading'?'Đang kiểm chứng…':ai.status==='error'?'Thử lại với AI':'AI giải thích & kiểm chứng'}</button><small class="ai-privacy">Dùng tài khoản đã xác nhận email · Câu hỏi và lựa chọn sẽ được gửi tới dịch vụ AI để phân tích.</small>`:''}</section>`;
+ const content=ai.status==='loading'?'<p class="ai-loading" role="status">Đang tra cứu Google và đối chiếu đáp án…</p>':ai.status==='error'?`<p class="ai-error" role="alert">${esc(ai.error)}</p>`:ai.status==='ready'?`<div class="ai-result"><div class="ai-evidence ${ai.data.researched?'':'ai-caution'}">${icon(ai.data.researched?'book':'shield',16)} ${ai.data.researched?'Đã tìm được nguồn tham khảo qua Google':'Chưa lấy được nguồn phù hợp — chưa đủ căn cứ kiểm chứng'}</div><div class="ai-explanation">${esc(ai.data.explanation)}</div>${ai.data.sources?.length?`<div class="ai-sources"><h4>Tài liệu tìm được</h4>${ai.data.sources.map((s,i)=>`<a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${icon('book',15)}<span>${esc(s.title)}<small>${esc(new URL(s.url).hostname)}</small></span>${icon('arrowup',14)}</a>`).join('')}</div>`:''}${ai.data.searchSuggestionsHtml?'<div id="google-search-suggestions" class="ai-google-suggestions" aria-label="Gợi ý Google Search"></div>':''}<p class="hint">AI có thể nhầm. Hãy mở nguồn để đối chiếu ngữ cảnh và phiên bản. Kết quả này không thay đổi đáp án đề hay điểm của bạn.</p></div>`:'<p class="muted">Tra cứu nguồn, ưu tiên tài liệu chính thức, giải thích từng lựa chọn và chỉ ra nếu đáp án đề có dấu hiệu mâu thuẫn.</p>';
+ return `<section class="study-agent" aria-label="Trợ lý AI"><div class="ai-heading"><div class="ai-avatar">${icon('brain',23)}</div><div><span class="eyebrow">ÔNKI AI · TRỢ LÝ KIẾN THỨC</span><h3>Hiểu vì sao chọn đáp án</h3></div><span class="ai-beta">FREE TIER</span></div>${content}${ai.status!=='ready'?`<button class="secondary ai-ask" id="ask-study-agent" ${ai.status==='loading'?'disabled':''}>${icon('bolt',17)} ${ai.status==='loading'?'Đang kiểm chứng…':ai.status==='error'?'Thử lại với AI':'AI giải thích & kiểm chứng'}</button><small class="ai-privacy">Google Gemini · Hạn mức miễn phí · Cần đăng nhập và xác nhận email.<br>Câu hỏi và lựa chọn được gửi tới Google. Gói miễn phí có thể dùng dữ liệu này để cải thiện sản phẩm.</small>`:''}</section>`;
 }
 
 function bindStudyAgent(){
+ const entry=document.getElementById('google-search-suggestions');
+ if(entry){
+  const data=learning?.responses[learning.index]?.ai?.data;
+  if(data?.searchSuggestionsHtml&&window.DOMPurify){
+   // Provider-issued Search Suggestions retain their styling without affecting the surrounding app.
+   const safeHTML=window.DOMPurify.sanitize(data.searchSuggestionsHtml,{FORBID_TAGS:['script','iframe','object','embed','form','input','button','link','meta','base']});
+   entry.attachShadow({mode:'closed'}).innerHTML=safeHTML;
+  }
+ }
  const button=document.getElementById('ask-study-agent');
  if(!button)return;
  button.onclick=async()=>{
@@ -20,6 +29,7 @@ function bindStudyAgent(){
    const data=await result.json();
    if(!result.ok)throw new Error(data.error||'Chưa tra cứu được. Bạn thử lại sau nhé.');
    if(typeof data.explanation!=='string'||!Array.isArray(data.sources))throw new Error('Kết quả AI chưa đầy đủ. Bạn thử lại sau nhé.');
+   if(data.searchSuggestionsHtml&&!window.DOMPurify)throw new Error('Chưa tải được phần hiển thị nguồn Google. Vui lòng tải lại trang.');
    // Defense in depth: links are always HTTPS; provider responses are rendered as text only.
    data.sources=data.sources.filter(s=>{try{return new URL(s.url).protocol==='https:';}catch{return false;}});
    response.ai={status:'ready',data};

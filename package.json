@@ -11,6 +11,8 @@
     "node": ">=22"
   },
   "dependencies": {
-    "ai": "7.0.172"
+    "@ai-sdk/google": "4.0.121",
+    "ai": "7.0.172",
+    "dompurify": "3.4.17"
   }
 }
