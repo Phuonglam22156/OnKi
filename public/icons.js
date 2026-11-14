@@ -1,4 +1,7 @@
 window.onkiIcon=function(name,size=20){const paths={
+folder:'<path d="M3 8V6a2 2 0 0 1 2-2h5l2 3h7a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8Z"/><path d="M3 9h18"/>',
+upload:'<path d="M12 16V3m-5 5 5-5 5 5M4 16v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4"/>',
+file:'<path d="M14 2H5v20h14V7l-5-5Z"/><path d="M14 2v6h5M8 12h8m-8 4h6"/>',
 grid:'<rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/>',
 cards:'<rect x="7" y="5" width="14" height="16" rx="3"/><path d="M17 5V3H3v14h4M11 10h6m-6 4h4"/>',
 chart:'<path d="M4 4v16h16M8 15l4-5 4 2 4-7"/><path d="M16 5h4v4"/>',

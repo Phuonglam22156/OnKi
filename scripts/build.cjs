@@ -5,4 +5,12 @@ if(url&&!/^https:\/\/[a-z0-9-]+\.supabase\.co\/?$/.test(url))throw Error('Invali
 if(key.startsWith('sb_secret_'))throw Error('A secret key must never be put in the browser. Use a publishable key.');
 if(key.split('.').length===3){try{const payload=JSON.parse(Buffer.from(key.split('.')[1],'base64url'));if(payload.role!=='anon')throw Error('Not an anon key');}catch{throw Error('Only an anon JWT or publishable key is allowed.');}}
 fs.writeFileSync('public/config.js','window.ONKI_CONFIG = '+JSON.stringify({supabaseUrl:url.replace(/\/$/,''),supabaseKey:key})+';\n');
+fs.mkdirSync('public/vendor/import',{recursive:true});
+for(const [source,target]of [
+ ['node_modules/mammoth/mammoth.browser.min.js','mammoth.browser.js'],
+ ['node_modules/mammoth/LICENSE','MAMMOTH-LICENSE'],
+ ['node_modules/pdfjs-dist/build/pdf.min.mjs','pdf.mjs'],
+ ['node_modules/pdfjs-dist/build/pdf.worker.min.mjs','pdf.worker.mjs'],
+ ['node_modules/pdfjs-dist/LICENSE','PDFJS-LICENSE']
+])fs.copyFileSync(source,'public/vendor/import/'+target);
 console.log(url?'Built with Supabase account support.':'Built in guest mode. Account login requires Supabase configuration.');

@@ -2,6 +2,16 @@
 
 Website ôn DBS401 bằng tiếng Việt: 9 bộ đề, 429 câu, flashcard, kiểm tra nhiều đáp án, chấm điểm và tiến độ cá nhân. Có 426 câu chấm tự động theo chữ in đậm trong nguồn. Ba câu chưa đánh dấu đáp án được giữ để xem, không chấm tự động.
 
+## Kho môn học và nhập tài liệu
+
+Thư viện ngoài hiển thị kho theo môn, ví dụ **DBS401**. Mở kho để chọn các đề từng kỳ; mã đề và dữ liệu ghi nhớ cũ được giữ nguyên. Mã môn có dạng DBS401 được gom chung dù tên đầy đủ là “DBS401 · Bảo mật CSDL”. Có thể tạo kho trống bằng **Thêm môn học**, hoặc nhập tên môn mới khi tạo/nhập bộ thẻ.
+
+Trong kho môn học chọn **Nhập Word / PDF** (cũng có ở hộp Tạo bộ thẻ). Bộ đọc Mammoth và PDF.js chạy trên trình duyệt, không dùng lượt AI và không tải file gốc lên máy chủ. Hỗ trợ .docx và PDF có lớp chữ, tối đa 10 MB, 100 trang PDF, 500 câu/thẻ; .doc cũ cần chuyển thành .docx. PDF scan chỉ có ảnh cần OCR trước. Nhận diện đề trắc nghiệm đánh số, lựa chọn A–H, đáp án in đậm trong Word hoặc dấu tick/dòng “Đáp án: B”/bảng đáp án; cũng hỗ trợ cặp Câu hỏi–Đáp án, Thuật ngữ–Định nghĩa và cặp cách nhau bằng tab hoặc dấu |.
+
+Xem trước từng nhóm 5 câu để sửa nội dung, chọn nhiều đáp án đúng, bỏ câu không cần và chọn môn lưu. Không đoán đáp án chưa được đánh dấu: câu thiếu đáp án vẫn nằm trong mục xem câu hỏi/flashcard nhưng bị loại khỏi học/chấm tự động. Các tài liệu có bố cục phức tạp cần kiểm tra kỹ bản xem trước. Bộ thẻ đã nhập lưu cả câu hỏi, lựa chọn và đáp án đã duyệt; khi đăng nhập, chúng đồng bộ riêng theo tài khoản cùng thư mục trống và tiến độ. Khách lưu trên thiết bị. File gốc không được lưu; giữ bản gốc riêng nếu cần tải lại. AI kiểm chứng hiện vẫn áp dụng cho ngân hàng đề DBS401 gốc.
+
+Các thư viện đọc tài liệu được pin trong package-lock; `npm ci` và bước build sao chép bundle cùng giấy phép vào `public/vendor/import/` (không commit các bundle sinh tự động). PDF worker phục vụ cùng origin. Word không được phép truy cập file ngoài hoặc chạy embedded style map; chuyển đổi trong worker có timeout và giới hạn kích thước giải nén. Nội dung tài liệu chỉ được dùng như dữ liệu, không được thực thi hoặc chèn HTML vào trang.
+
 ## Học từng câu
 
 Mở bộ đề để học từng câu với phản hồi ngay khi chọn: đúng hiện xanh, sai hiện đỏ và đáp án chuẩn. Câu nhiều đáp án báo đúng/sai từng lựa chọn, hoàn thành khi chọn đủ hoặc chọn sai. Tiến độ ghi nhớ được cập nhật một lần mỗi câu; buổi học không làm thay đổi lịch sử điểm kiểm tra. Cuối buổi có thể học lại riêng các câu sai.
