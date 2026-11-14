@@ -44,10 +44,11 @@ function learningHTML(){
   const status= picked?(correct?'answer-correct':'answer-wrong'):(revealed?'answer-correct':'');
   const badge=picked?(correct?'Bạn chọn · Đúng':'Bạn chọn · Sai'):(revealed?'Đáp án đúng':'');
   return `<button class="option ${status}" data-learn-answer="${i}" ${response.finished||picked?'disabled':''} aria-pressed="${picked}"><span class="letter">${String.fromCharCode(65+i)}</span><span class="learning-option-text">${esc(option)}${badge?'<small class="answer-label">'+icon(correct?'check':'close',13)+' '+badge+'</small>':''}</span>${status?'<span class="answer-symbol">'+icon(correct?'checkcircle':'close',19)+'</span>':''}</button>`;
- }).join('')}</div>${feedback}<div class="quiz-nav"><button class="secondary" id="learn-previous" ${position===0?'disabled':''}>← Câu trước</button><button class="primary" id="learn-next" ${!response.finished?'disabled':''}>${position===questions.length-1?'Hoàn thành buổi học':'Câu tiếp theo →'}</button></div>${!response.picks.length?'<p class="hint">Kết quả xuất hiện ngay khi bạn chọn. Không cần nộp bài.</p>':''}</div>`;
+ }).join('')}</div>${feedback}${response.finished&&current.source&&typeof studyAgentHTML==='function'?studyAgentHTML(response):''}<div class="quiz-nav"><button class="secondary" id="learn-previous" ${position===0?'disabled':''}>← Câu trước</button><button class="primary" id="learn-next" ${!response.finished?'disabled':''}>${position===questions.length-1?'Hoàn thành buổi học':'Câu tiếp theo →'}</button></div>${!response.picks.length?'<p class="hint">Kết quả xuất hiện ngay khi bạn chọn. Không cần nộp bài.</p>':''}</div>`;
 }
 
 function bindLearning(){
+ if(typeof bindStudyAgent==='function')bindStudyAgent();
  document.querySelectorAll('[data-learn-answer]').forEach(button=>button.onclick=()=>{if(chooseLearning(Number(button.dataset.learnAnswer))){render();document.getElementById('learn-feedback')?.scrollIntoView?.({block:'nearest'});}});
  const next=document.getElementById('learn-next');
  if(next)next.onclick=()=>{if(!learning.responses[learning.index]?.finished)return;if(learning.index===learning.questions.length-1)learning.ended=true;else learning.index++;render();(document.getElementById('learning-question')||document.querySelector('.learning-result'))?.scrollIntoView?.({block:'start'});};

@@ -3,6 +3,7 @@
   "framework": null,
   "buildCommand": "node scripts/build.cjs",
   "outputDirectory": "public",
+  "functions": {"api/study-agent.mjs": {"maxDuration": 90, "includeFiles": "public/exams.js"}},
   "headers": [{"source": "/(.*)", "headers": [
     {"key": "X-Content-Type-Options", "value": "nosniff"},
     {"key": "Referrer-Policy", "value": "strict-origin-when-cross-origin"},
