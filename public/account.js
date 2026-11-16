@@ -17,7 +17,7 @@
   function getCache(key){try{return JSON.parse(localStorage.getItem(key));}catch{return null;}}
   function paintProfile(){
     const name=user?(user.user_metadata?.full_name||user.email||'Sinh viên'):'Sinh viên';
-    const profile=document.querySelector('.profile');profile.querySelector('strong').textContent=name;profile.querySelector('small').textContent=user?'Tài khoản cá nhân':'Đang học với tư cách khách';profile.querySelector('.avatar').textContent=user?name.slice(0,2).toUpperCase():'SV';button.textContent=user?'Tài khoản':'Đăng nhập';
+    const profile=document.querySelector('.profile');profile.querySelector('strong').textContent=name;profile.querySelector('small').textContent=user?(window.onkiCatalog?.isAdmin()?'Quản trị nội dung':'Tài khoản cá nhân'):'Đang học với tư cách khách';profile.querySelector('.avatar').textContent=user?name.slice(0,2).toUpperCase():'SV';button.textContent=user?'Tài khoản':'Đăng nhập';
   }
   function modal(mode='login'){
     authMode=mode;

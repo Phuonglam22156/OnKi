@@ -12,7 +12,7 @@ if(!state.removedSampleSubjectsV1){
  state.removedSampleSubjectsV1=true;
 }
 const imported=window.EXAM_DECKS||[];state.decks=[...imported,...state.decks.filter(d=>!imported.some(e=>e.id===d.id))];save();
-let sharedDecks=[];
+let sharedDecks=[],sharedSubjects=[];
 let page='home',filter='all',query='',current=null,mode='flash',index=0,flipped=false,order=[],quiz=[],answers=[],qIndex=0,result=false;
 const $=s=>document.querySelector(s),esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const today=()=>new Date().toLocaleDateString('en-CA');
@@ -55,8 +55,9 @@ function sourceNote(){const missing=current.questions.filter(q=>!q.answerIndices
 
 window.onkiApp={
  exportState(){return JSON.parse(JSON.stringify({decks:state.decks.filter(d=>!d.source&&!sharedDecks.some(s=>s.id===d.id)),subjects:state.subjects||[],known:state.known,saved:state.saved,history:state.history,activity:state.activity,removedSampleSubjectsV1:true}));},
- setShared(decks){
+ setShared(decks,subjects=sharedSubjects){
   const previous=new Set(sharedDecks.map(d=>d.id));
+  sharedSubjects=subjects.filter(s=>typeof s==='string'&&s.trim()&&s.length<=40);
   sharedDecks=decks.map(window.OnkiDeckData.sanitizeDeck).filter(Boolean);
   const ids=new Set([...imported,...sharedDecks].map(d=>d.id));
   state.decks=[...imported,...sharedDecks,...state.decks.filter(d=>!previous.has(d.id)&&!ids.has(d.id))];

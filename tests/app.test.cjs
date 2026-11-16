@@ -12,6 +12,17 @@ test('Shared exams are canonical across account switches but never copied into p
  vm.runInContext(`openDeck('dshared-test');window.onkiApp.setShared([]);`,c);
  assert.equal(vm.runInContext('current',c),null);assert.equal(vm.runInContext('state.decks.length',c),18);
 });
+
+test('Empty shared course folders survive account changes without being stored as private folders',()=>{
+ const c=load();vm.runInContext(`window.onkiApp.setShared([],['PRF192 · Lập trình C']);window.onkiApp.load({subjects:['PRF192','CSI104']});`,c);
+ assert.equal(vm.runInContext(`subjectGroups().filter(s=>s.key==='PRF192').length`,c),1);
+ assert.equal(vm.runInContext(`subjectLabel('PRF192')`,c),'PRF192 · Lập trình C');
+ assert.match(vm.runInContext('subjectLibraryHTML()',c),/data-subject="PRF192"/);
+ vm.runInContext(`window.onkiApp.load({});`,c);
+ assert.equal(vm.runInContext(`subjectGroups().find(s=>s.key==='PRF192').decks.length`,c),0);
+ assert.equal(vm.runInContext('window.onkiApp.exportState().subjects.length',c),0);
+ assert.equal(vm.runInContext(`subjectGroups().some(s=>s.key==='CSI104')`,c),false);
+});
 test('Fresh library contains the DBS401 and MLN122 source decks',()=>{const c=load();assert.equal(vm.runInContext('state.decks.length',c),18);assert.equal(vm.runInContext('state.decks.reduce((n,d)=>n+d.cards.length,0)',c),966);});
 test('Account switch replaces progress and keeps source decks canonical',()=>{const c=load();vm.runInContext(`window.onkiApp.load({known:{'exam-fa24_fe':[0,1]},saved:['exam-fa24_fe'],history:[{title:'FA24',time:'2026-11-13T00:00:00Z',score:50,correct:1,count:2}]})`,c);assert.equal(vm.runInContext('state.known["exam-fa24_fe"].length',c),2);vm.runInContext('window.onkiApp.load({})',c);assert.equal(vm.runInContext('total()',c),0);assert.equal(vm.runInContext('state.history.length',c),0);assert.equal(vm.runInContext('state.saved.length',c),0);assert.equal(vm.runInContext('window.onkiApp.exportState().decks.length',c),0);});
 test('Multi-answer grading requires exact answers and omits unkeyed questions',()=>{const c=load();assert.equal(vm.runInContext(`let count=0;for(const d of imported){current=d;startQuiz();answers=quiz.map(q=>[...q.answerIndices]);for(let i=0;i<quiz.length;i++){if(!isCorrect(quiz[i],i))throw Error('correct response rejected');if(quiz[i].answerIndices.length>1){answers[i]=answers[i].slice(1);if(isCorrect(quiz[i],i))throw Error('partial response accepted');}count++;}}count`,c),958);});
