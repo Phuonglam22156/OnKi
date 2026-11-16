@@ -1,5 +1,17 @@
 const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm'),{spawnSync}=require('node:child_process');
 function load(){const nodes=new Map();let stored={};const context={URL,window:{scrollTo(){}},document:{getElementById(){return null},querySelector(s){if(!nodes.has(s))nodes.set(s,{classList:{toggle(){},add(){},remove(){}}});return nodes.get(s)},querySelectorAll(){return []},addEventListener(){}},localStorage:{getItem(k){return stored[k]||null},setItem(k,v){stored[k]=v}},setTimeout,clearTimeout};vm.createContext(context);for(const p of ['exams.js','study-agent.js','learning.js','deck-data.js','subjects.js','import-parser.js','app.js'])vm.runInContext(fs.readFileSync('public/'+p,'utf8'),context);return context;}
+
+test('Shared exams are canonical across account switches but never copied into personal study state',()=>{
+ const c=load();vm.runInContext(`window.onkiApp.setShared([{id:'dshared-test',title:'Shared exam',subject:'MLN122',importedFrom:'test.docx',cards:[['Q','B. correct']],questions:[{term:'Q',options:['wrong','correct'],answerIndices:[1]}]}]);window.onkiApp.load({decks:[{id:'dshared-test',title:'Forged private replacement',subject:'OTHER',cards:[['bad','bad']]}],known:{'dshared-test':[0]}});`,c);
+ assert.equal(vm.runInContext('state.decks.length',c),19);
+ assert.equal(vm.runInContext(`state.decks.find(d=>d.id==='dshared-test').title`,c),'Shared exam');
+ assert.equal(vm.runInContext(`known(state.decks.find(d=>d.id==='dshared-test')).length`,c),1);
+ assert.equal(vm.runInContext('window.onkiApp.exportState().decks.length',c),0);
+ vm.runInContext('window.onkiApp.load({})',c);
+ assert.equal(vm.runInContext('state.decks.length',c),19);assert.equal(vm.runInContext('total()',c),0);
+ vm.runInContext(`openDeck('dshared-test');window.onkiApp.setShared([]);`,c);
+ assert.equal(vm.runInContext('current',c),null);assert.equal(vm.runInContext('state.decks.length',c),18);
+});
 test('Fresh library contains the DBS401 and MLN122 source decks',()=>{const c=load();assert.equal(vm.runInContext('state.decks.length',c),18);assert.equal(vm.runInContext('state.decks.reduce((n,d)=>n+d.cards.length,0)',c),966);});
 test('Account switch replaces progress and keeps source decks canonical',()=>{const c=load();vm.runInContext(`window.onkiApp.load({known:{'exam-fa24_fe':[0,1]},saved:['exam-fa24_fe'],history:[{title:'FA24',time:'2026-11-13T00:00:00Z',score:50,correct:1,count:2}]})`,c);assert.equal(vm.runInContext('state.known["exam-fa24_fe"].length',c),2);vm.runInContext('window.onkiApp.load({})',c);assert.equal(vm.runInContext('total()',c),0);assert.equal(vm.runInContext('state.history.length',c),0);assert.equal(vm.runInContext('state.saved.length',c),0);assert.equal(vm.runInContext('window.onkiApp.exportState().decks.length',c),0);});
 test('Multi-answer grading requires exact answers and omits unkeyed questions',()=>{const c=load();assert.equal(vm.runInContext(`let count=0;for(const d of imported){current=d;startQuiz();answers=quiz.map(q=>[...q.answerIndices]);for(let i=0;i<quiz.length;i++){if(!isCorrect(quiz[i],i))throw Error('correct response rejected');if(quiz[i].answerIndices.length>1){answers[i]=answers[i].slice(1);if(isCorrect(quiz[i],i))throw Error('partial response accepted');}count++;}}count`,c),958);});

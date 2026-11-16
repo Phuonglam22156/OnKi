@@ -1,7 +1,7 @@
 (() => {
   'use strict';
   const config=window.ONKI_CONFIG||{};
-  const client=config.supabaseUrl&&config.supabaseKey?window.supabase.createClient(config.supabaseUrl,config.supabaseKey,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}}):null;
+  const client=window.onkiSupabase||(config.supabaseUrl&&config.supabaseKey?window.supabase.createClient(config.supabaseUrl,config.supabaseKey,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}}):null);
   const app=window.onkiApp,byId=id=>document.getElementById(id);
   let user=null,epoch=0,revision=0,dirty=false,ready=false,working=false,timer=null,authMode='login',version=0,conflict=false;
   const button=document.createElement('button');button.className='secondary small';button.id='account-button';button.textContent='Đăng nhập';
@@ -73,6 +73,10 @@
   async function changeUser(next){
     if(next?.id===user?.id){if(next)user=next;paintProfile();return;}
     clearTimeout(timer);epoch++;working=false;user=next;dirty=false;revision=0;conflict=false;ready=false;paintProfile();
+    const generation=epoch;
+    await window.onkiCatalog?.ready;
+    await window.onkiCatalog?.identity(next);
+    if(generation!==epoch)return;
     if(user)await loadCloud(user,epoch);else{app.load(getCache('onki-v1')||{});syncLabel('Học với tư cách khách');ready=true;lock(false);}
   }
   function queue(){clearTimeout(timer);timer=setTimeout(flush,650);}

@@ -1,5 +1,11 @@
 # Ônki
 
+## Quản trị đề chung
+
+Quyền đăng đề dùng bảng `content_admins`, chỉ chủ dự án có thể cấp quyền; tài khoản không thể tự nâng quyền từ thông tin hồ sơ. Chạy `supabase/shared-decks.sql` một lần trên dự án để tạo bảng/RLS và hàm xuất bản. Tài khoản admin đã đăng nhập sẽ thấy **Quản lý đề chung** trên thanh đầu trang: chọn **Đăng đề từ Word / PDF**, xem lại nội dung và đáp án, sau đó **Đăng đề chung**. Đề được lưu ở `shared_decks`, xuất hiện trong kho môn học của mọi người, kể cả khách. File gốc được xử lý trên thiết bị; chỉ nội dung đã duyệt được công khai.
+
+Có thể **Ẩn đề / Đăng lại** mà không xóa dữ liệu. Trang quản trị quản lý các đề mới đăng qua giao diện; 18 đề nguồn có sẵn vẫn được quản lý trong repository. Hạn mức hiện tại: 10 MB/file, 500 câu/đề, 1.75 MB dữ liệu đề đã duyệt. Quyền ghi được kiểm tra ở database; giao diện không chứa mật khẩu hay khóa quản trị. Dữ liệu đề chung không bị sao chép vào dữ liệu cá nhân; tiến độ và đề riêng vẫn tách theo tài khoản.
+
 Website ôn thi bằng tiếng Việt: 18 bộ đề nguồn thuộc DBS401 và MLN122, 966 câu, flashcard, kiểm tra nhiều đáp án, chấm điểm và tiến độ cá nhân. Có 958 câu được chấm theo đáp án đánh dấu trong nguồn; 8 câu thiếu đáp án rõ hoặc lỗi OCR được giữ để xem, không chấm tự động.
 
 ## Môn MLN122

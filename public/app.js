@@ -12,6 +12,7 @@ if(!state.removedSampleSubjectsV1){
  state.removedSampleSubjectsV1=true;
 }
 const imported=window.EXAM_DECKS||[];state.decks=[...imported,...state.decks.filter(d=>!imported.some(e=>e.id===d.id))];save();
+let sharedDecks=[];
 let page='home',filter='all',query='',current=null,mode='flash',index=0,flipped=false,order=[],quiz=[],answers=[],qIndex=0,result=false;
 const $=s=>document.querySelector(s),esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const today=()=>new Date().toLocaleDateString('en-CA');
@@ -53,11 +54,20 @@ document.addEventListener('keydown',e=>{if(page!=='study'||mode!=='flash'||$('#c
 function sourceNote(){const missing=current.questions.filter(q=>!q.answerIndices.length),issues=current.questions.filter(q=>q.sourceWarning);return '<div class="source-note"><div><strong>Nguồn: '+esc(current.source)+'</strong><p>'+esc(current.answerSource||'Đáp án theo phần in đậm trong file gốc; chưa được thẩm định.')+(missing.length?' Có '+missing.length+' câu thiếu đáp án rõ hoặc lỗi OCR (câu '+missing.map(q=>q.number).join(', ')+'), giữ để xem và không chấm tự động.':' Hỗ trợ câu có nhiều đáp án.')+(issues.length?' Có ghi chú bố cục/OCR tại câu '+issues.map(q=>q.number).join(', ')+'. Xem chi tiết trong phần câu hỏi.':'')+'</p></div><a class="secondary" download href="sources/'+encodeURIComponent(current.source)+'">↓ Tải đề gốc</a></div>'}
 
 window.onkiApp={
- exportState(){return JSON.parse(JSON.stringify({decks:state.decks.filter(d=>!d.source),subjects:state.subjects||[],known:state.known,saved:state.saved,history:state.history,activity:state.activity,removedSampleSubjectsV1:true}));},
+ exportState(){return JSON.parse(JSON.stringify({decks:state.decks.filter(d=>!d.source&&!sharedDecks.some(s=>s.id===d.id)),subjects:state.subjects||[],known:state.known,saved:state.saved,history:state.history,activity:state.activity,removedSampleSubjectsV1:true}));},
+ setShared(decks){
+  const previous=new Set(sharedDecks.map(d=>d.id));
+  sharedDecks=decks.map(window.OnkiDeckData.sanitizeDeck).filter(Boolean);
+  const ids=new Set([...imported,...sharedDecks].map(d=>d.id));
+  state.decks=[...imported,...sharedDecks,...state.decks.filter(d=>!previous.has(d.id)&&!ids.has(d.id))];
+  if(current&&!state.decks.some(d=>d.id===current.id)){current=null;learning=null;page='library';}
+  render();
+ },
  load(raw){
   raw=raw&&typeof raw==='object'?raw:{};
   const custom=Array.isArray(raw.decks)?raw.decks.map(window.OnkiDeckData.sanitizeDeck).filter(Boolean):[];
-  const decks=[...imported,...custom],ids=new Set(decks.map(d=>d.id)),known={};
+  const sharedIds=new Set(sharedDecks.map(d=>d.id));
+  const decks=[...imported,...sharedDecks,...custom.filter(d=>!sharedIds.has(d.id))],ids=new Set(decks.map(d=>d.id)),known={};
   for(const d of decks){const values=raw.known?.[d.id];known[d.id]=Array.isArray(values)?[...new Set(values.filter(i=>Number.isInteger(i)&&i>=0&&i<d.cards.length))]:[];}
   state={decks,known,subjects:Array.isArray(raw.subjects)?[...new Set(raw.subjects.filter(s=>typeof s==='string'&&s.trim()).map(s=>s.trim().slice(0,40)))].slice(0,100):[],saved:Array.isArray(raw.saved)?raw.saved.filter(id=>ids.has(id)):[],history:Array.isArray(raw.history)?raw.history.filter(h=>h&&typeof h.title==='string'&&Number.isFinite(h.score)&&h.score>=0&&h.score<=100&&Number.isInteger(h.count)&&h.count>0&&Number.isInteger(h.correct)&&h.correct>=0&&h.correct<=h.count&&Number.isFinite(Date.parse(h.time))).slice(-2000):[],activity:Object.fromEntries(Object.entries(raw.activity||{}).filter(([date,n])=>/^\d{4}-\d{2}-\d{2}$/.test(date)&&Number.isInteger(n)&&n>=0)),removedSampleSubjectsV1:true};
   window.onkiImporter?.reset();selectedSubject=null;current=null;learning=null;page='home';query='';filter='all';render();
