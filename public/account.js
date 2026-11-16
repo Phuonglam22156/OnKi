@@ -21,7 +21,7 @@
   }
   function modal(mode='login'){
     authMode=mode;
-    if(!client){dialog.innerHTML='<div class="modal-head"><h2>Tài khoản chưa sẵn sàng</h2><button class="icon" data-account-close aria-label="Đóng">×</button></div><p class="muted">Đăng ký và đồng bộ tài khoản đang được thiết lập. Bạn vẫn có thể ôn cả 9 bộ đề ở chế độ khách.</p>';}
+    if(!client){dialog.innerHTML='<div class="modal-head"><h2>Tài khoản chưa sẵn sàng</h2><button class="icon" data-account-close aria-label="Đóng">×</button></div><p class="muted">Đăng ký và đồng bộ tài khoản đang được thiết lập. Bạn vẫn có thể ôn các bộ đề ở chế độ khách.</p>';}
     else if(user&&mode!=='update'){
       dialog.innerHTML=`<div class="modal-head"><div><small>KHÔNG GIAN CỦA BẠN</small><h2>Tài khoản học tập</h2></div><button class="icon" data-account-close aria-label="Đóng">×</button></div><p><strong>${esc(user.user_metadata?.full_name||'Sinh viên')}</strong></p><p class="muted">${esc(user.email||'')}</p><p id="account-message" class="muted" role="status">${esc(status.textContent)}</p><div class="account-actions"><button class="secondary" id="sync-now">Đồng bộ lại</button><button class="secondary" id="cloud-reload">Tải bản đám mây</button><button class="primary" id="logout">Đăng xuất</button></div><p class="muted">Dữ liệu học tập được lưu riêng cho tài khoản này. Chế độ khách dùng dữ liệu riêng trên trình duyệt.</p>`;
     }else{

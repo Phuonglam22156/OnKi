@@ -1,9 +1,9 @@
 const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),mammoth=require('mammoth'),{DOMParser}=require('linkedom');
 global.DOMParser=DOMParser;
 const {parse,docxBlocks}=require('../public/import-parser.js'),{sanitizeDeck}=require('../public/deck-data.js');
-test('DOCX importer preserves every question and marked answer in all nine real source exams',async()=>{
+test('DOCX importer preserves every question and marked answer in all nine DBS401 source exams',async()=>{
  const decks=JSON.parse(fs.readFileSync('public/exams.js','utf8').replace(/^\s*window\.EXAM_DECKS\s*=\s*/,'').replace(/;\s*$/,''));
- for(const deck of decks){const html=(await mammoth.convertToHtml({path:'public/sources/'+deck.source},{includeEmbeddedStyleMap:false,externalFileAccess:false})).value;const imported=parse(docxBlocks(html));assert.equal(imported.cards.length,deck.questions.length,deck.source);assert.deepEqual(imported.questions.map(q=>q.answerIndices),deck.questions.map(q=>q.answerIndices),deck.source);assert.deepEqual(imported.questions.map(q=>q.options.length),deck.questions.map(q=>q.options.length),deck.source);}
+ for(const deck of decks.filter(d=>d.subject.startsWith('DBS401'))){const html=(await mammoth.convertToHtml({path:'public/sources/'+deck.source},{includeEmbeddedStyleMap:false,externalFileAccess:false})).value;const imported=parse(docxBlocks(html));assert.equal(imported.cards.length,deck.questions.length,deck.source);assert.deepEqual(imported.questions.map(q=>q.answerIndices),deck.questions.map(q=>q.answerIndices),deck.source);assert.deepEqual(imported.questions.map(q=>q.options.length),deck.questions.map(q=>q.options.length),deck.source);}
 });
 test('Parser handles wrapped options, loose option markers, multiple answers and explicit answer keys',()=>{
  const r=parse(['1. Choose the permissions','A Read','continued option text','B. Write','C) Delete','Answer: A, C','2. Next question','A. One','B. Two','Answer key','2-B']);assert.equal(r.questions.length,2);assert.equal(r.questions[0].options[0],'Read\ncontinued option text');assert.deepEqual(r.questions[0].answerIndices,[0,2]);assert.deepEqual(r.questions[1].answerIndices,[1]);

@@ -1,6 +1,14 @@
 # Ônki
 
-Website ôn DBS401 bằng tiếng Việt: 9 bộ đề, 429 câu, flashcard, kiểm tra nhiều đáp án, chấm điểm và tiến độ cá nhân. Có 426 câu chấm tự động theo chữ in đậm trong nguồn. Ba câu chưa đánh dấu đáp án được giữ để xem, không chấm tự động.
+Website ôn thi bằng tiếng Việt: 18 bộ đề nguồn thuộc DBS401 và MLN122, 966 câu, flashcard, kiểm tra nhiều đáp án, chấm điểm và tiến độ cá nhân. Có 958 câu được chấm theo đáp án đánh dấu trong nguồn; 8 câu thiếu đáp án rõ hoặc lỗi OCR được giữ để xem, không chấm tự động.
+
+## Môn MLN122
+
+Kho MLN122 · Kinh tế chính trị Mác – Lênin gồm 9 đề: FA25 FE C1 (60), SP26 FE C1 (60), SU25 BL5 (59), SU25 FE C1 (60), SU25 FE C2 (60), SU25 thi lại (60), SU26 thi lại (58), SU26 FE C1 (60), SU26 FE C2 (60): tổng 537 câu, 532 câu chấm được. DOCX gốc được giữ nguyên byte tại public/sources. Đáp án theo chữ in đậm, chưa thẩm định kiến thức.
+
+Không chấm tự động SU25 BL5 câu 49; SU25 FE C2 câu 12, 33, 55; SU26 thi lại câu 44. SU25 FE C1 câu 57 được tách nhãn C đang dính dưới ký tự © trong dòng B; SU25 FE C2 câu 52 có nhãn G ở vị trí C. Chỉ chỉnh bố cục hai câu này và giữ đáp án D in đậm, kèm ghi chú trên giao diện. Câu 55 SU25 FE C2 gộp A/B và lỗi chữ: giữ dòng gốc, đánh dấu lựa chọn B chưa đọc được, loại khỏi chấm. Không tự bổ sung đáp án theo suy đoán. scripts/import-mln122.cjs tái tạo dữ liệu từ 9 file nguồn và kiểm tra số câu từng đề.
+
+AI kiểm chứng hiện chỉ dành cho DBS401 vì kho tham chiếu đang là tài liệu kỹ thuật cơ sở dữ liệu; MLN122 không dùng nhầm nguồn hoặc hướng dẫn của DBS401.
 
 ## Kho môn học và nhập tài liệu
 
