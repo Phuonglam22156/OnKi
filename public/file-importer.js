@@ -43,7 +43,7 @@
   const token=++sequence;if(!draft)return;
   const type=file.name.toLowerCase().endsWith('.docx')?'docx':file.name.toLowerCase().endsWith('.pdf')?'pdf':null;
   if(!type||file.size>10*1024*1024){draft.error=type?'File vượt quá 10 MB. Hãy chia nhỏ tài liệu.':'Chỉ hỗ trợ .docx và .pdf. Với .doc, hãy lưu lại thành .docx.';paint();return;}
-  draft.phase='reading';draft.error='';draft.fileName=file.name;draft.title=file.name.replace(/\.(docx|pdf)$/i,'').replace(/_/g,' ').slice(0,90);if(!draft.subject){const course=file.name.match(/\b([A-Z]{2,}\d{2,})\b/i)||file.name.match(/^([A-Z]{2,}\d{2,})_/i);if(course)draft.subject=course[1].toUpperCase();}paint();
+  draft.phase='reading';draft.error='';draft.fileName=file.name;draft.title=file.name.replace(/\.(docx|pdf)$/i,'').replace(/_/g,' ').slice(0,90);if(!draft.subject){const course=file.name.match(/\b([A-Z]{2,}\d{2,})\b/i)||file.name.match(/^([A-Z]{2,}\d{2,})_/i);if(course&&!/^(FA|SP|SU)\d{2}$/i.test(course[1]))draft.subject=course[1].toUpperCase();}paint();
   try{const buffer=await file.arrayBuffer();if(token!==sequence||!draft)return;const blocks=type==='docx'?await docx(buffer):await pdf(buffer,token);if(token!==sequence||!draft||draft.scope!==scope())return;const parsed=window.OnkiImportParser.parse(blocks);
    if(!parsed.cards.length)throw Error('Chưa nhận diện được câu hỏi/đáp án. Hãy dùng dạng “Câu 1. … / A. … / B. …” hoặc cặp “Câu hỏi: … / Đáp án: …”.');if(parsed.cards.length>500)throw Error('Có hơn 500 câu/thẻ. Hãy chia thành nhiều bộ đề.');
    draft.kind=parsed.kind;draft.rows=parsed.kind==='quiz'?parsed.questions.map(q=>({...q,included:true})):parsed.cards.map(([term,answer])=>({term,answer,included:true}));draft.phase='review';draft.page=0;paint();
